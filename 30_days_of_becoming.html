@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30 Days of Becoming — Self Improvement Challenge</title>
+<style>
+  :root{
+    --pista:#dcebdc; --pista-deep:#456c58; --lavender:#e9def8;
+    --lavender-deep:#7255a1; --cream:#fffaf0; --ink:#243b35;
+    --muted:#6d7c73; --line:#cbd9cb; --peach:#fbe4d9; --blue:#e0ecfb;
+    --yellow:#fff0c4; --white:#fffefa;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(135deg,#f7f3e9,#edf4eb 50%,#f1eafa);color:var(--ink);
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;padding:24px}
+  .page{max-width:1500px;margin:auto}
+  header{text-align:center;padding:18px 10px 26px;position:relative}
+  .eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:.75rem;font-weight:800;color:var(--pista-deep)}
+  h1{font-size:clamp(2rem,5vw,4rem);line-height:1.05;margin:10px 0;color:#244d3d;letter-spacing:-.04em}
+  h1 span{color:var(--lavender-deep)}
+  .subtitle{color:var(--muted);font-size:1rem}
+  .quote{display:inline-block;margin-top:12px;padding:10px 18px;border-radius:999px;background:#fffaf0cc;border:1px solid #e6ddc9;color:#5c6d5f;font-style:italic}
+  .layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:18px;align-items:start}
+  .sidebar,.panel{background:#fffdf8d9;border:1px solid var(--line);border-radius:22px;box-shadow:0 10px 30px #344b3510}
+  .sidebar{padding:18px;position:sticky;top:14px}
+  .section-title{font-size:1.15rem;margin:0 0 14px;color:#315b47}
+  .habit-list{display:flex;flex-direction:column;gap:8px}
+  .habit{display:flex;align-items:center;gap:10px;padding:10px;border-radius:13px;font-size:.9rem;font-weight:600}
+  .habit:nth-child(6n+1){background:var(--yellow)}.habit:nth-child(6n+2){background:var(--lavender)}
+  .habit:nth-child(6n+3){background:#f3e3f0}.habit:nth-child(6n+4){background:var(--pista)}
+  .habit:nth-child(6n+5){background:#ffecd5}.habit:nth-child(6n){background:var(--blue)}
+  .habit-number{display:grid;place-items:center;flex:0 0 28px;height:28px;border-radius:50%;background:#ffffffb8;color:#365345;font-size:.8rem}
+  .habit-name{line-height:1.25}
+  .side-note{margin:16px 2px 0;color:var(--muted);font-size:.82rem;line-height:1.5}
+  .main{min-width:0}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+  .stat{padding:13px 15px;background:#fffdf8d9;border:1px solid var(--line);border-radius:16px}
+  .stat-label{font-size:.75rem;color:var(--muted);margin-bottom:5px}
+  .stat-value{font-size:1.35rem;font-weight:800;color:#315b47}
+  .progress-track{height:7px;border-radius:99px;background:#e9e8dc;overflow:hidden;margin-top:8px}
+  .progress-fill{height:100%;width:0;background:linear-gradient(90deg,#9cc6a7,#b9a0e7);transition:width .2s}
+  .panel{padding:14px;margin-bottom:14px}
+  .panel-heading{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:2px 2px 12px}
+  .panel-heading h2{font-size:1.05rem;margin:0}
+  .panel-heading p{margin:3px 0 0;color:var(--muted);font-size:.8rem}
+  .days-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+  .day-card{border:1px solid #d4dfd1;border-radius:13px;overflow:hidden;background:#fffefa;min-width:0}
+  .day-top{padding:9px 7px 7px;text-align:center;min-height:91px;background:var(--pista)}
+  .day-card:nth-child(5n+2) .day-top{background:var(--lavender)}
+  .day-card:nth-child(5n+3) .day-top{background:var(--yellow)}
+  .day-card:nth-child(5n+4) .day-top{background:var(--blue)}
+  .day-card:nth-child(5n) .day-top{background:var(--peach)}
+  .day-label{font-weight:850;font-size:.88rem}
+  .day-quote{font-size:.72rem;line-height:1.3;margin-top:5px;color:#52665a;min-height:28px}
+  .day-count{font-size:.68rem;color:#607268;margin-top:4px}
+  .checks{padding:7px 8px 9px;display:grid;gap:4px}
+  .check-row{display:flex;align-items:center;gap:7px;min-height:24px;padding:2px 4px;border-radius:7px;background:#f7f7ee}
+  .check-row:nth-child(3n+2){background:#f1eafa}
+  .check-row:nth-child(3n){background:#eaf3e9}
+  .check-row input{appearance:none;width:16px;height:16px;flex:0 0 16px;margin:0;border:1.6px solid #82958a;border-radius:4px;background:#fff;cursor:pointer;display:grid;place-items:center}
+  .check-row input:checked{background:#6b9a79;border-color:#6b9a79}
+  .check-row input:checked::after{content:"✓";font-size:12px;font-weight:900;color:white;line-height:1}
+  .check-row.done{opacity:.7}
+  .check-row.done::after{content:"Done";font-size:.65rem;color:#4f7d5d;margin-left:auto}
+  .actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:15px 0}
+  button{font:inherit;border:1px solid #cbd9cb;background:#fffdf8;color:#365345;border-radius:999px;padding:9px 15px;font-weight:700;font-size:.82rem;cursor:pointer;transition:transform .15s,background .15s}
+  button:hover{transform:translateY(-1px);background:#eaf3e9}
+  button.primary{background:#426d55;color:white;border-color:#426d55}
+  .footer{text-align:center;color:var(--muted);padding:14px 10px 4px;font-size:.9rem;line-height:1.7}
+  .footer strong{color:#426d55}
+  .toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#294d3b;color:white;padding:11px 16px;border-radius:12px;box-shadow:0 8px 24px #0002;font-size:.85rem;opacity:0;pointer-events:none;transition:opacity .2s}
+  .toast.show{opacity:1}
+  @media(max-width:1050px){.layout{grid-template-columns:240px minmax(0,1fr)}.days-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media(max-width:700px){body{padding:12px}.layout{grid-template-columns:1fr}.sidebar{position:static}.habit-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.habit{font-size:.8rem;padding:8px}.days-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{gap:6px}.stat{padding:10px}.stat-value{font-size:1.1rem}.day-top{min-height:84px}}
+  @media print{body{padding:0;background:white}.sidebar{position:static}.actions{display:none}.layout{grid-template-columns:250px 1fr}.days-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.day-card,.sidebar,.panel{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="eyebrow">A little progress every day</div>
+    <h1>30 Days of <span>Becoming</span></h1>
+    <div class="subtitle">A self-improvement challenge · Build habits, build confidence, become your best self.</div>
+    <div class="quote">“You don't have to be perfect. You just have to keep showing up.”</div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <h2 class="section-title">✿ Your Daily To-Do List</h2>
+      <div class="habit-list" id="habitList"></div>
+      <p class="side-note">Tick the box for a habit on any day when you've completed it. Small steps count. Keep going! 🌱</p>
+    </aside>
+
+    <main class="main">
+      <section class="stats">
+        <div class="stat"><div class="stat-label">HABITS COMPLETED</div><div class="stat-value" id="completed">0 / 330</div><div class="progress-track"><div class="progress-fill" id="overallBar"></div></div></div>
+        <div class="stat"><div class="stat-label">OVERALL PROGRESS</div><div class="stat-value" id="percent">0%</div><div class="progress-track"><div class="progress-fill" id="percentBar"></div></div></div>
+        <div class="stat"><div class="stat-label">DAYS WITH PROGRESS</div><div class="stat-value" id="daysProgress">0 / 30</div><div class="progress-track"><div class="progress-fill" id="daysBar"></div></div></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading"><div><h2>🌿 Your 30-day tracker</h2><p>Click any little square to tick or untick it. Your progress saves in this browser.</p></div></div>
+        <div class="days-grid" id="daysGrid"></div>
+      </section>
+
+      <div class="actions">
+        <button class="primary" id="todayBtn">Go to Day 1</button>
+        <button id="printBtn">Print / Save as PDF</button>
+        <button id="exportBtn">Export progress</button>
+        <button id="resetBtn">Reset all</button>
+      </div>
+    </main>
+  </div>
+
+  <div class="footer">
+    <strong>Progress, not perfection.</strong><br>
+    Discipline today = more freedom tomorrow. · One day at a time. 💚
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const habits = [
+  "Wake up before 6",
+  "Exercise / Workout",
+  "Meditation / Pray",
+  "Skin care",
+  "Eat clean",
+  "Drink 3–4 litres water",
+  "Coaching classes",
+  "Self study 2 hours",
+  "School work / Coaching",
+  "Plan for next day",
+  "Sleep before 11"
+];
+const quotes = [
+ "Start strong","You can do this","Discipline builds freedom","Better than yesterday","Keep going",
+ "Progress over perfection","You are capable","Small steps = big dreams","Stay consistent","Good things take time",
+ "You're doing great","Stay focused","Believe in yourself","Make it happen","Consistency wins",
+ "Keep showing up","Progress is progress","You got this","Hard work pays off","Be proud of yourself",
+ "Stay consistent","Discipline is self-love","You are capable","Keep going","Stronger than yesterday",
+ "Good habits = freedom","Small steps, big changes","Almost there","You can do it","Proud of you"
+];
+const KEY = "30-days-becoming-progress-v1";
+let progress = {};
+try { progress = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e) { progress = {}; }
+const habitList = document.getElementById("habitList");
+const daysGrid = document.getElementById("daysGrid");
+habits.forEach((habit,i)=>{
+  const item=document.createElement("div");
+  item.className="habit";
+  item.innerHTML=`<span class="habit-number">${i+1}</span><span class="habit-name"></span>`;
+  item.querySelector(".habit-name").textContent=habit;
+  habitList.appendChild(item);
+});
+for(let day=1;day<=30;day++){
+  const card=document.createElement("article");
+  card.className="day-card";
+  card.id=`day-${day}`;
+  const top=document.createElement("div");top.className="day-top";
+  top.innerHTML=`<div class="day-label">Day ${day}</div><div class="day-quote"></div><div class="day-count">0 / ${habits.length} done</div>`;
+  top.querySelector(".day-quote").textContent=quotes[day-1];
+  const checks=document.createElement("div");checks.className="checks";
+  habits.forEach((habit,i)=>{
+    const row=document.createElement("label");row.className="check-row";
+    const cb=document.createElement("input");cb.type="checkbox";cb.setAttribute("aria-label",`Day ${day}: ${habit}`);
+    cb.checked=!!(progress[day] && progress[day][i]);
+    const text=document.createElement("span");text.textContent=habit;text.style.cssText="font-size:.68rem;line-height:1.2;color:#43574b";
+    text.title=habit;
+    row.append(cb,text);
+    if(cb.checked) row.classList.add("done");
+    cb.addEventListener("change",()=>{
+      if(!progress[day])progress[day]={};
+      progress[day][i]=cb.checked;
+      row.classList.toggle("done",cb.checked);
+      save();updateStats();
+    });
+    checks.appendChild(row);
+  });
+  card.append(top,checks);daysGrid.appendChild(card);
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(progress));}catch(e){showToast("Could not save in this browser. Export your progress to keep a backup.");}}
+function updateStats(){
+  let total=0,days=0;
+  for(let d=1;d<=30;d++){
+    let count=0;
+    for(let i=0;i<habits.length;i++) if(progress[d] && progress[d][i])count++;
+    total+=count;if(count>0)days++;
+    const card=document.getElementById(`day-${d}`);
+    card.querySelector(".day-count").textContent=`${count} / ${habits.length} done`;
+  }
+  const max=30*habits.length,pct=Math.round(total/max*100);
+  document.getElementById("completed").textContent=`${total} / ${max}`;
+  document.getElementById("percent").textContent=`${pct}%`;
+  document.getElementById("overallBar").style.width=pct+"%";
+  document.getElementById("percentBar").style.width=pct+"%";
+  document.getElementById("daysProgress").textContent=`${days} / 30`;
+  document.getElementById("daysBar").style.width=(days/30*100)+"%";
+}
+let toastTimer;
+function showToast(message){const el=document.getElementById("toast");el.textContent=message;el.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("show"),2400);}
+document.getElementById("printBtn").addEventListener("click",()=>window.print());
+document.getElementById("todayBtn").addEventListener("click",()=>{document.getElementById("day-1").scrollIntoView({behavior:"smooth",block:"center"});});
+document.getElementById("exportBtn").addEventListener("click",()=>{
+  const blob=new Blob([JSON.stringify({challenge:"30 Days of Becoming",habits,progress},null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="30-days-becoming-progress.json";a.click();URL.revokeObjectURL(url);showToast("Progress backup exported!");
+});
+document.getElementById("resetBtn").addEventListener("click",()=>{
+  if(confirm("Reset all 30 days of progress? This cannot be undone.")){
+    progress={};save();
+    document.querySelectorAll('.check-row input').forEach(cb=>{cb.checked=false;cb.closest('.check-row').classList.remove('done');});
+    updateStats();showToast("Progress reset. A fresh start 🌱");
+  }
+});
+updateStats();
+</script>
+</body>
+</html>
